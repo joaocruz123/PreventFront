@@ -13,7 +13,7 @@
           </li>
           <li>
             <router-link class="waves-effect waves-dark" to="/beneficiarios">
-              <i class="mdi mdi-account-check"></i>
+              <i class="mdi mdi-account"></i>
               <span class="hide-menu">Beneficiarios</span>
             </router-link>
           </li>

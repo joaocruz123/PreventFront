@@ -48,8 +48,9 @@ export default {
         },
         createBeneficiario(context, form) {
             let bodyFormData = form
+            let token = localStorage.token
 
-            Api.request('post', `/beneficiarios`, bodyFormData, { token: '' })
+            Api.request('post', `/beneficiarios`, bodyFormData, { Authorization: 'Bearer ' + token })
                 .then(response => {
                     context.commit('CREATE_SUCCESS', response.data)
                 }).catch(error => {
@@ -57,8 +58,9 @@ export default {
                 })
         },
         deleteBeneficiario(context, id) {
-
-            Api.request('delete', `/beneficiarios/${id}`, '', { token: '' })
+            let token = localStorage.token
+            
+            Api.request('delete', `/beneficiarios/${id}`, '', { Authorization: 'Bearer ' + token })
                 .then(response => {
                     context.commit('DELETE_SUCCESS', response.data)
                 }).catch(error => {
@@ -68,7 +70,7 @@ export default {
     },
     mutations: {
         [GET_DATA_SUCCESS](state, payload) {
-            state.beneficiarios = payload.beneficiarios
+            state.beneficiarios = payload
         },
         [CREATE_SUCCESS](state, payload) {
         },

@@ -43,10 +43,46 @@
           <!-- ============================================================== -->
           <!-- Profile -->
           <!-- ============================================================== -->
-          <li class="nav-item">
-            <a class="nav-link waves-effect waves-dark" href="#">
-              <img src="static/assets/images/users/1.jpg" alt="user" class="profile-pic" />
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle waves-effect waves-dark"
+              href
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {{ user.name }}
             </a>
+            <div class="dropdown-menu dropdown-menu-right animated flipInY">
+              <ul class="dropdown-user">
+                <li>
+                  <div class="dw-user-box">
+                    <div class="u-text">
+                      <h4>{{ user.name }}</h4>
+                      <p class="text-muted">{{ user.email }}</p>
+                    
+                    </div>
+                  </div>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="#">
+                    <i class="ti-user"></i> Perfil
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="ti-settings"></i> Configurações
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="#">
+                    <i class="fa fa-power-off"></i> Logout
+                  </a>
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
@@ -56,6 +92,20 @@
 
 <script>
 export default {
-    name:'Header'
-}
+  name: "Header",
+  data(){
+    return{
+      user:{
+        nome: '',
+        email: ''
+      }
+    }
+  },
+  created(){
+    if(localStorage.token !== ''){
+      this.user.name = localStorage.usuario
+      this.user.email = localStorage.email
+    }
+  }
+};
 </script>
